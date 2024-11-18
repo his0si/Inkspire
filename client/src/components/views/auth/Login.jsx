@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const styles = {
     container: {
@@ -44,10 +44,18 @@ const styles = {
   };
   
   const Login = () => {
+    const navigate = useNavigate();
+
+    const handleSubmit = (e) => {
+      e.preventDefault();
+      // TODO: 실제 로그인 로직을 여기에 구현
+      navigate('/main');  // 메인 페이지로 이동
+    };
+
     return (
       <div style={styles.container}>
         <h1 style={styles.title}>Inkspire</h1>
-        <form style={styles.form}>
+        <form style={styles.form} onSubmit={handleSubmit}>
           <input style={styles.input} type="text" placeholder="아이디" />
           <input style={styles.input} type="password" placeholder="비밀번호" />
           <button style={styles.button} type="submit">로그인</button>
