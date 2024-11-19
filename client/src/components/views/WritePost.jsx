@@ -144,7 +144,7 @@ const WritePost = () => {
       <Sidebar>
         <MenuItem>로고</MenuItem>
         <MenuItem>글쓰기</MenuItem>
-        <MenuItem>탐색하기</MenuItem>
+        <MenuItem onClick={() => navigate('/main')}>탐색하기</MenuItem>
         <MenuItem>이웃들</MenuItem>
         <MenuItem>내 프로필</MenuItem>
       </Sidebar>
