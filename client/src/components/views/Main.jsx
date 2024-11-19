@@ -91,7 +91,7 @@ const Main = () => {
         <MenuItem onClick={() => navigate('/write')}>글쓰기</MenuItem>
         <MenuItem>탐색하기</MenuItem>
         <MenuItem>이웃들</MenuItem>
-        <MenuItem>내 프로필</MenuItem>
+        <MenuItem onClick={() => navigate('/profile')}>내 프로필</MenuItem>
       </Sidebar>
       
       <Content>

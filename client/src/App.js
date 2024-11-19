@@ -1,3 +1,4 @@
+import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './components/views/auth/Home';
 import Login from './components/views/auth/Login';
@@ -6,6 +7,7 @@ import Main from './components/views/Main';
 import PostDetail from './components/views/PostDetail';
 import WritePost from './components/views/WritePost';
 import PostComplete from './components/views/PostComplete';
+import Profile from './components/views/Profile';
 
 function App() {
   return (
@@ -19,6 +21,7 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/write" element={<WritePost />} />
         <Route path="/post-complete" element={<PostComplete />} />
+        <Route path="/profile" element={<Profile />} />
       </Routes>
     </Router>
   );
