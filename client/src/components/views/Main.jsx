@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { useNavigate } from 'react-router-dom';
 
 const Container = styled.div`
   display: flex;
@@ -48,6 +49,10 @@ const Post = styled.div`
   padding: 15px;
   position: relative;
   background-color: white;
+  cursor: pointer;
+  &:hover {
+    background-color: #f8f8f8;
+  }
 `;
 
 const PostTitle = styled.div`
@@ -73,11 +78,17 @@ const PostAuthor = styled.div`
 `;
 
 const Main = () => {
+  const navigate = useNavigate();
+
+  const handlePostClick = (postId) => {
+    navigate(`/post/${postId}`);
+  };
+
   return (
     <Container>
       <Sidebar>
         <MenuItem>로고</MenuItem>
-        <MenuItem>글쓰기</MenuItem>
+        <MenuItem onClick={() => navigate('/write')}>글쓰기</MenuItem>
         <MenuItem>탐색하기</MenuItem>
         <MenuItem>이웃들</MenuItem>
         <MenuItem>내 프로필</MenuItem>
@@ -88,7 +99,7 @@ const Main = () => {
         <Subtitle>여름 & 물꽃</Subtitle>
         
         <PostList>
-          <Post>
+          <Post onClick={() => handlePostClick(1)}>
             <PostTitle>물꽃놀이</PostTitle>
             <PostTime>17:33</PostTime>
             <PostContent>
@@ -97,7 +108,7 @@ const Main = () => {
             <PostAuthor>by 오마이걸</PostAuthor>
           </Post>
 
-          <Post>
+          <Post onClick={() => handlePostClick(2)}>
             <PostTitle>물꽃놀이</PostTitle>
             <PostTime>17:15</PostTime>
             <PostContent>
@@ -108,7 +119,7 @@ const Main = () => {
             <PostAuthor>by 허밍실</PostAuthor>
           </Post>
 
-          <Post>
+          <Post onClick={() => handlePostClick(3)}>
             <PostTitle>제목</PostTitle>
             <PostTime>17:00</PostTime>
             <PostContent>
