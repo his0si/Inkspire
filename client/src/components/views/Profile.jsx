@@ -90,7 +90,7 @@ const Profile = () => {
         <MenuItem>로고</MenuItem>
         <MenuItem onClick={() => navigate('/write')}>글쓰기</MenuItem>
         <MenuItem onClick={() => navigate('/main')}>탐색하기</MenuItem>
-        <MenuItem>이웃들</MenuItem>
+        <MenuItem onClick={() => navigate('/neighbors')}>이웃들</MenuItem>
         <MenuItem onClick={() => navigate('/profile')}>내 프로필</MenuItem>
       </Sidebar>
 

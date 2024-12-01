@@ -77,11 +77,25 @@ const PostAuthor = styled.div`
   text-align: right;
 `;
 
-const Main = () => {
+const SearchButton = styled.div`
+  margin-bottom: 15px;
+  cursor: pointer;
+  font-weight: normal;
+`;
+
+const SearchContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+  height: 40px;
+`;
+
+const NeighborsPage = () => {
   const navigate = useNavigate();
 
   const handlePostClick = (postId) => {
-    navigate(`/post/${postId}`);
+    navigate(`/post/${postId}`); // 포스트 상세 페이지로 이동
   };
 
   return (
@@ -89,48 +103,44 @@ const Main = () => {
       <Sidebar>
         <MenuItem>로고</MenuItem>
         <MenuItem onClick={() => navigate('/write')}>글쓰기</MenuItem>
-        <MenuItem>탐색하기</MenuItem>
+        <MenuItem onClick={() => navigate('/main')}>탐색하기</MenuItem>
         <MenuItem onClick={() => navigate('/neighbors')}>이웃들</MenuItem>
         <MenuItem onClick={() => navigate('/profile')}>내 프로필</MenuItem>
       </Sidebar>
       
       <Content>
-        <Title>오늘의 키워드:</Title>
-        <Subtitle>여름 & 물꽃</Subtitle>
+        <Title>이웃들의 글</Title>
+        <Subtitle>이웃 목록</Subtitle>
+        
+        <SearchContainer>
+          <div style={{ height: '100%' }}>이웃 목록</div>
+          <SearchButton onClick={() => {/* Add search functionality here */}}>필명 검색</SearchButton>
+        </SearchContainer>
         
         <PostList>
           <Post onClick={() => handlePostClick(1)}>
-            <PostTitle>물꽃놀이</PostTitle>
-            <PostTime>17:33</PostTime>
-            <PostContent>
-              날 바라보던 너의 눈에 비친 내 모습이 참 힘이 됐었는데 나도 몰랐던 날 알게 해준 날 믿었던 그 한 마음이 참 yearn 다시 이 런 우리는 물놀이가 난 참 새치곤 벌써가...
-            </PostContent>
-            <PostAuthor>by 오마이걸</PostAuthor>
+            <PostTitle>불꽃놀이</PostTitle>
+            <PostTime>17:13</PostTime>
+            <PostContent>저녁에 하는 태양의 이들이...</PostContent>
+            <PostAuthor>by 하현실</PostAuthor>
           </Post>
-
           <Post onClick={() => handlePostClick(2)}>
-            <PostTitle>물꽃놀이</PostTitle>
-            <PostTime>17:15</PostTime>
-            <PostContent>
-              여름이라고 너의 눈동자 안에
-              머물러가는 내 맘보다 깊이
-              머물러가고 머물러있다가 날갯짓하여 사라져버릴까...
-            </PostContent>
-            <PostAuthor>by 허밍실</PostAuthor>
+            <PostTitle>가을밤</PostTitle>
+            <PostTime>2023-07-01</PostTime>
+            <PostContent>반은~~~~~~</PostContent>
+            <PostAuthor>by 오렌지</PostAuthor>
           </Post>
-
           <Post onClick={() => handlePostClick(3)}>
             <PostTitle>제목</PostTitle>
-            <PostTime>17:00</PostTime>
-            <PostContent>
-              물놀~~~~~
-            </PostContent>
-            <PostAuthor>by 시크</PostAuthor>
+            <PostTime>2023-06-29</PostTime>
+            <PostContent>반은~~~~~~</PostContent>
+            <PostAuthor>by 수박</PostAuthor>
           </Post>
+          {/* 추가 글들 ... */}
         </PostList>
       </Content>
     </Container>
   );
 };
 
-export default Main;
+export default NeighborsPage;

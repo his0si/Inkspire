@@ -121,6 +121,7 @@ const SubmitButton = styled.button`
   font-size: 13px;
 `;
 
+
 const WritePost = () => {
   const navigate = useNavigate();
   const [content, setContent] = useState('');
@@ -145,8 +146,8 @@ const WritePost = () => {
         <MenuItem>로고</MenuItem>
         <MenuItem>글쓰기</MenuItem>
         <MenuItem onClick={() => navigate('/main')}>탐색하기</MenuItem>
-        <MenuItem>이웃들</MenuItem>
-        <MenuItem>내 프로필</MenuItem>
+        <MenuItem onClick={() => navigate('/neighbors')}>이웃들</MenuItem>
+        <MenuItem onClick={() => navigate('/profile')}>내 프로필</MenuItem>
       </Sidebar>
       
       <Content>
