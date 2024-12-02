@@ -101,8 +101,8 @@ const Profile = () => {
         </ProfileHeader>
 
         <ButtonGroup>
-          <Button>계정 관리</Button>
-          <Button>수집 키워드</Button>
+          <Button onClick={() => navigate('/account-management')}>계정 관리</Button>
+          <Button onClick={() => navigate('/keywords')}>수집 키워드</Button>
         </ButtonGroup>
 
         <PostList>
