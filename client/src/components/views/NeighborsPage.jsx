@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 
@@ -91,11 +91,77 @@ const SearchContainer = styled.div`
   height: 40px;
 `;
 
+const Popup = styled.div`
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  width: 400px;
+  max-height: 80%;
+  overflow-y: auto;
+`;
+
+const CloseButtonContainer = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 20px;
+`;
+
+const Overlay = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+`;
+
 const NeighborsPage = () => {
   const navigate = useNavigate();
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
+  const [isNeighborsPopupOpen, setIsNeighborsPopupOpen] = useState(false);
+  const [searchTerm, setSearchTerm] = useState('');
+
+  const neighbors = [
+    { name: '하현실', id: 1 },
+    { name: '오렌지', id: 2 },
+    { name: '수박', id: 3 },
+  ];
 
   const handlePostClick = (postId) => {
     navigate(`/post/${postId}`); // 포스트 상세 페이지로 이동
+  };
+
+  const handleNeighborsClick = () => {
+    setIsNeighborsPopupOpen(true);
+  };
+
+  const handleSearchClick = () => {
+    setIsPopupOpen(true);
+  };
+
+  const handleClosePopup = () => {
+    setIsPopupOpen(false);
+  };
+
+  const handleCloseNeighborsPopup = () => {
+    setIsNeighborsPopupOpen(false);
+  };
+
+  const handleSearchSubmit = (e) => {
+    e.preventDefault();
+    console.log('Searching for:', searchTerm);
+    handleClosePopup();
+  };
+
+  const handleNeighborClick = (neighborId) => {
+    navigate(`/user-posts/${neighborId}`);
+    handleCloseNeighborsPopup();
   };
 
   return (
@@ -104,7 +170,7 @@ const NeighborsPage = () => {
         <MenuItem>로고</MenuItem>
         <MenuItem onClick={() => navigate('/write')}>글쓰기</MenuItem>
         <MenuItem onClick={() => navigate('/main')}>탐색하기</MenuItem>
-        <MenuItem onClick={() => navigate('/neighbors')}>이웃들</MenuItem>
+        <MenuItem onClick={handleNeighborsClick}>이웃들</MenuItem>
         <MenuItem onClick={() => navigate('/profile')}>내 프로필</MenuItem>
       </Sidebar>
       
@@ -113,8 +179,8 @@ const NeighborsPage = () => {
         <Subtitle>이웃 목록</Subtitle>
         
         <SearchContainer>
-          <div style={{ height: '100%' }}>이웃 목록</div>
-          <SearchButton onClick={() => {/* Add search functionality here */}}>필명 검색</SearchButton>
+          <MenuItem onClick={handleNeighborsClick}>이웃 목록</MenuItem>
+          <SearchButton onClick={handleSearchClick}>필명 검색</SearchButton>
         </SearchContainer>
         
         <PostList>
@@ -138,6 +204,46 @@ const NeighborsPage = () => {
           </Post>
           {/* 추가 글들 ... */}
         </PostList>
+
+        {/* 필명 검색 팝업 */}
+        {isPopupOpen && (
+          <>
+            <Overlay onClick={handleClosePopup} />
+            <Popup>
+              <h2>필명 검색</h2>
+              <form onSubmit={handleSearchSubmit}>
+                <input
+                  type="text"
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                  placeholder="필명을 입력하세요"
+                />
+                <button type="submit">검색</button>
+                <button type="button" onClick={handleClosePopup}>닫기</button>
+              </form>
+            </Popup>
+          </>
+        )}
+
+        {/* 이웃 목록 팝업 */}
+        {isNeighborsPopupOpen && (
+          <>
+            <Overlay onClick={handleCloseNeighborsPopup} />
+            <Popup>
+              <h2>이웃 목록</h2>
+              <ul>
+                {neighbors.map((neighbor) => (
+                  <li key={neighbor.id} onClick={() => handleNeighborClick(neighbor.id)}>
+                    {neighbor.name}
+                  </li>
+                ))}
+              </ul>
+              <CloseButtonContainer>
+                <button type="button" onClick={handleCloseNeighborsPopup}>닫기</button>
+              </CloseButtonContainer>
+            </Popup>
+          </>
+        )}
       </Content>
     </Container>
   );
