@@ -12,6 +12,7 @@ const Container = styled.div`
 const Sidebar = styled.div`
   width: 100px;
   margin-right: 20px;
+  padding-top: 80px;
 `;
 
 const MenuItem = styled.div`
@@ -121,6 +122,10 @@ const SubmitButton = styled.button`
   font-size: 13px;
 `;
 
+const Logo = styled.img`
+  width: 50px;
+  height: auto;
+`;
 
 const WritePost = () => {
   const navigate = useNavigate();
@@ -143,8 +148,10 @@ const WritePost = () => {
   return (
     <Container>
       <Sidebar>
-        <MenuItem>로고</MenuItem>
-        <MenuItem>글쓰기</MenuItem>
+        <MenuItem>
+          <Logo src="/inkspire_logo.png" alt="Inkspire Logo" />
+        </MenuItem>
+        <MenuItem onClick={() => navigate('/write')}>글쓰기</MenuItem>
         <MenuItem onClick={() => navigate('/main')}>탐색하기</MenuItem>
         <MenuItem onClick={() => navigate('/neighbors')}>이웃들</MenuItem>
         <MenuItem onClick={() => navigate('/profile')}>내 프로필</MenuItem>

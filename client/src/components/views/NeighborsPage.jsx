@@ -12,6 +12,7 @@ const Container = styled.div`
 const Sidebar = styled.div`
   width: 100px;
   margin-right: 20px;
+  padding-top: 80px;
 `;
 
 const MenuItem = styled.div`
@@ -127,6 +128,11 @@ const Overlay = styled.div`
   z-index: 999;
 `;
 
+const Logo = styled.img`
+  width: 50px;
+  height: auto;
+`;
+
 const NeighborsPage = () => {
   const navigate = useNavigate();
   const [isPopupOpen, setIsPopupOpen] = useState(false);
@@ -173,7 +179,9 @@ const NeighborsPage = () => {
   return (
     <Container>
       <Sidebar>
-        <MenuItem>로고</MenuItem>
+        <MenuItem>
+          <Logo src="/inkspire_logo.png" alt="Inkspire Logo" />
+        </MenuItem>
         <MenuItem onClick={() => navigate('/write')}>글쓰기</MenuItem>
         <MenuItem onClick={() => navigate('/main')}>탐색하기</MenuItem>
         <MenuItem onClick={handleNeighborsClick}>이웃들</MenuItem>
