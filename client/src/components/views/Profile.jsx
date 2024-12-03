@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 
@@ -32,7 +32,7 @@ const ProfileHeader = styled.div`
 const UserName = styled.h1`
   font-size: 24px;
   margin: 0 0 5px 0;
-  font-weight: normal;
+  font-weight: bold; 
 `;
 
 const UserInfo = styled.div`
@@ -81,8 +81,44 @@ const PostDate = styled.div`
   padding: 0 15px 15px;
 `;
 
+const Modal = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+`;
+
+const ModalContent = styled.div`
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  max-width: 500px;
+  width: 100%;
+
+  h1 {
+    font-size: 16px;
+    margin-bottom: 15px;
+  }
+`;
+
+const ButtonContainer = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 20px;
+`;
+
 const Profile = () => {
   const navigate = useNavigate();
+  const [isModalOpen, setModalOpen] = useState(false);
+  const [isKeywordsModalOpen, setKeywordsModalOpen] = useState(false);
+
+  const keywords = ['여름&불꽃'];
 
   return (
     <Container>
@@ -101,9 +137,40 @@ const Profile = () => {
         </ProfileHeader>
 
         <ButtonGroup>
-          <Button onClick={() => navigate('/account-management')}>계정 관리</Button>
-          <Button onClick={() => navigate('/keywords')}>수집 키워드</Button>
+          <Button onClick={() => setModalOpen(true)}>계정 관리</Button>
+          <Button onClick={() => setKeywordsModalOpen(true)}>수집 키워드</Button>
         </ButtonGroup>
+
+        {isModalOpen && (
+          <Modal>
+            <ModalContent>
+              <h1>계정 관리</h1>
+              <div>필명</div>
+              <div>자기소개</div>
+              <div>이메일</div>
+              <div>비밀번호</div>
+              <div>로그아웃</div>
+              <div>계정 탈퇴</div>
+              <ButtonContainer>
+                <Button onClick={() => setModalOpen(false)}>닫기</Button>
+              </ButtonContainer>
+            </ModalContent>
+          </Modal>
+        )}
+
+        {isKeywordsModalOpen && (
+          <Modal>
+            <ModalContent>
+              <h1>오마이걸의 수집 키워드</h1>
+              {keywords.map((keyword, index) => (
+                <div key={index}>• {keyword}</div>
+              ))}
+              <ButtonContainer>
+                <Button onClick={() => setKeywordsModalOpen(false)}>닫기</Button>
+              </ButtonContainer>
+            </ModalContent>
+          </Modal>
+        )}
 
         <PostList>
           <Post onClick={() => navigate('/post/1')}>

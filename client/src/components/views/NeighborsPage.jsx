@@ -103,6 +103,12 @@ const Popup = styled.div`
   width: 400px;
   max-height: 80%;
   overflow-y: auto;
+  border-radius: 16px; // 둥글게 만들기
+
+  h2 {
+    font-size: 16px; // 글씨 크기 조정
+    margin-bottom: 15px; // 아래 여백 추가
+  }
 `;
 
 const CloseButtonContainer = styled.div`

@@ -27,7 +27,7 @@ const Content = styled.div`
 const Title = styled.div`
   font-size: 14px;
   margin-top: 80px;
-  margin-bottom: 5px;
+  margin-bottom: 10px;
   text-align: center;
 `;
 
