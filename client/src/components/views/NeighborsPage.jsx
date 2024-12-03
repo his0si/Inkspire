@@ -104,11 +104,11 @@ const Popup = styled.div`
   width: 400px;
   max-height: 80%;
   overflow-y: auto;
-  border-radius: 16px; // 둥글게 만들기
+  border-radius: 16px;
 
   h2 {
-    font-size: 16px; // 글씨 크기 조정
-    margin-bottom: 15px; // 아래 여백 추가
+    font-size: 16px; 
+    margin-bottom: 15px; 
   }
 `;
 
@@ -129,8 +129,8 @@ const Overlay = styled.div`
 `;
 
 const Logo = styled.img`
-  width: 50px;
-  height: auto;
+  width: 100px;
+  height: 100px;
 `;
 
 const NeighborsPage = () => {

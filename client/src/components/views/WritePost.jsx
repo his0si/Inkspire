@@ -123,8 +123,8 @@ const SubmitButton = styled.button`
 `;
 
 const Logo = styled.img`
-  width: 50px;
-  height: auto;
+  width: 100px;
+  height: 100px;
 `;
 
 const WritePost = () => {

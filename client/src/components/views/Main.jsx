@@ -79,8 +79,8 @@ const PostAuthor = styled.div`
 `;
 
 const Logo = styled.img`
-  width: 50px;
-  height: auto;
+  width: 100px;
+  height: 100px;
 `;
 
 const Main = () => {
